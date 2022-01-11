@@ -59,6 +59,5 @@ const cardComponent = () => `<section class="card">
         </div>
     </section>`;
 
-
 const main = document.querySelector('main');
 main.innerHTML = cardComponent();
