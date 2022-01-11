@@ -1,12 +1,17 @@
 body {
   font-family: "Roboto Light", sans-serif;
-
 }
+
+li span {
+  float: right;
+  color: #777;
+}
+
 .card {
   margin: 10% 20%;
   border-radius: 5px;
   padding: 0;
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0 7px 29px 0;
 }
 
 .card-title h2 {
@@ -17,7 +22,7 @@ body {
 
 .card-title h2 span {
   float: right;
-  color: #777777;
+  color: #777;
 }
 
 .form-control {
@@ -55,11 +60,6 @@ li {
   padding: 8px;
   font-weight: normal;
   font-size: 1.2rem;
-}
-
-li span {
-  float: right;
-  color: #777;
 }
 
 ul {

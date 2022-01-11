@@ -2,24 +2,24 @@ import './style.css';
 
 const todos = [
   {
-    description: "Wash the dishes at Grandma's house",
+    description: 'Wash the dishes at Grandmas house',
     completed: true,
-    index: "1"
+    index: '1',
   },
   {
-    description: "Watch Netflix for 2 hours",
+    description: 'Watch Netflix for 2 hours',
     completed: false,
-    index: "2"
+    index: '2',
   },
   {
-    description: "Code the Todo-app with Javascript",
+    description: 'Code the Todo-app with Javascript',
     completed: true,
-    index: "3"
+    index: '3',
   },
   {
-    description: "Wash the dishes at my house",
+    description: 'Wash the dishes at my house',
     completed: true,
-    index: "4"
+    index: '4',
   }
 ];
 
@@ -31,10 +31,10 @@ const showToDo = (todo) => {
                        <i class="fa fa-ellipsis-v"></i>
                     </span>
                 </li><hr/>`;
-}
+};
 
 const todoComponent = () => {
-  let string = ``;
+  let string = '';
   todos.forEach((item) => {
     string += showToDo(item);
   });
@@ -63,8 +63,7 @@ const cardComponent = () => {
         </div>
     </section>
   `;
-}
+};
 
 const main = document.querySelector('main');
 main.innerHTML = cardComponent();
-
