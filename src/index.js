@@ -20,7 +20,7 @@ const todos = [
     description: 'Wash the dishes at my house',
     completed: true,
     index: '4',
-  }
+  },
 ];
 
 const showToDo = (todo) => {
@@ -41,9 +41,8 @@ const todoComponent = () => {
   return string;
 };
 
-const cardComponent = () => {
-  return `
-  <section class="card">
+const cardComponent = () =>
+  `  <section class="card">
         <div>
             <div class="card-title">
                 <h2> Today's To Do <span> <i class="fa fa-retweet"></i> </span>
@@ -63,7 +62,7 @@ const cardComponent = () => {
         </div>
     </section>
   `;
-};
+
 
 const main = document.querySelector('main');
 main.innerHTML = cardComponent();
