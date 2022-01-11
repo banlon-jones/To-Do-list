@@ -23,15 +23,13 @@ const todos = [
   },
 ];
 
-const showToDo = (todo) => {
-  return `<li class="item">
+const showToDo = (todo) => `<li class="item">
                     <input class="check" type="checkbox" value="index"/>
                     ${todo.description}
                     <span>
                        <i class="fa fa-ellipsis-v"></i>
                     </span>
                 </li><hr/>`;
-};
 
 const todoComponent = () => {
   let string = '';
@@ -41,8 +39,7 @@ const todoComponent = () => {
   return string;
 };
 
-const cardComponent = () =>
-  `  <section class="card">
+const cardComponent = () => `<section class="card">
         <div>
             <div class="card-title">
                 <h2> Today's To Do <span> <i class="fa fa-retweet"></i> </span>
@@ -60,8 +57,7 @@ const cardComponent = () =>
                 <a href="#"> Clear all completed </a>
             </div>
         </div>
-    </section>
-  `;
+    </section>`;
 
 
 const main = document.querySelector('main');
