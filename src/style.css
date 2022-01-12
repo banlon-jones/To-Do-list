@@ -1,0 +1,71 @@
+body {
+  font-family: "Roboto Light", sans-serif;
+}
+
+li span {
+  float: right;
+  color: #777;
+}
+
+.card {
+  margin: 10% 20%;
+  border-radius: 5px;
+  padding: 0;
+  box-shadow: rgba(100, 100, 111, 0.2) 0 7px 29px 0;
+}
+
+.card-title h2 {
+  font-size: 1.2rem;
+  padding: 8px;
+  margin: 2px;
+}
+
+.card-title h2 span {
+  float: right;
+  color: #777;
+}
+
+.form-control {
+  font-size: 0.9rem;
+  padding: 5px;
+  font-style: italic;
+  width: 90%;
+  height: 25px;
+  border: none;
+}
+
+.form-control:focus {
+  outline: none;
+}
+
+.form-div {
+  margin: 1px 5px;
+}
+
+.card-footer {
+  padding: 16px;
+  background-color: #f6f6f6;
+  font-weight: lighter;
+  text-align: center;
+}
+
+.card-footer a {
+  text-decoration: none;
+  color: #777;
+  text-align: center;
+}
+
+li {
+  list-style: none;
+  padding: 8px;
+  font-weight: normal;
+  font-size: 1.2rem;
+}
+
+ul {
+  padding: 0;
+}
+
+hr {
+  border-top: 1px solid #c1c1c3;
+}
