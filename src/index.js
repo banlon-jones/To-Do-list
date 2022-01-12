@@ -1,43 +1,15 @@
 import './style.css';
-
-const todos = [
-  {
-    description: 'Wash the dishes at Grandmas house',
-    completed: true,
-    index: '1',
-  },
-  {
-    description: 'Watch Netflix for 2 hours',
-    completed: false,
-    index: '2',
-  },
-  {
-    description: 'Code the Todo-app with Javascript',
-    completed: true,
-    index: '3',
-  },
-  {
-    description: 'Wash the dishes at my house',
-    completed: true,
-    index: '4',
-  },
-];
+import {
+  getAllTodos, addTodo, removeTodo, editTodo,
+} from './todo';
 
 const showToDo = (todo) => `<li class="item">
                     <input class="check" type="checkbox" value="index"/>
-                    ${todo.description}
-                    <span>
-                       <i class="fa fa-ellipsis-v"></i>
-                    </span>
+                     <span class="desc" data-index="${todo.index}" contentEditable="true"> ${todo.description} </span>
+                    <button class="trash" value="${todo.index}">
+                       <i class="fa fa-trash"></i>
+                    </button>
                 </li><hr/>`;
-
-const todoComponent = () => {
-  let string = '';
-  todos.forEach((item) => {
-    string += showToDo(item);
-  });
-  return string;
-};
 
 const cardComponent = () => `<section class="card">
         <div>
@@ -46,12 +18,11 @@ const cardComponent = () => `<section class="card">
                 </h2>
             </div><hr/>
             <div class="form-div">
-                <form>
-                    <input class="form-control" type="text" placeholder="Add to your list"/>
+                <form class="todo-form">
+                    <input class="form-control" name="description" type="text" placeholder="Add to your list"/>
                 </form>
             </div><hr/>
             <ul class="todos">
-                ${todoComponent()}
             </ul>
             <div class="card-footer">
                 <a href="#"> Clear all completed </a>
@@ -61,3 +32,35 @@ const cardComponent = () => `<section class="card">
 
 const main = document.querySelector('main');
 main.innerHTML = cardComponent();
+
+const todos = document.querySelector('.todos');
+const todoComponent = () => {
+  todos.innerHTML = '';
+  getAllTodos().forEach((item) => {
+    todos.innerHTML += showToDo(item);
+  });
+  const remove = document.querySelectorAll('.trash');
+  remove.forEach((item) => {
+    item.addEventListener('click', () => {
+      removeTodo(item.getAttribute('value'));
+      todoComponent();
+    });
+  });
+
+  const desc = document.querySelectorAll('.desc');
+  desc.forEach((item) => {
+    item.addEventListener('input', () => {
+      editTodo(item.getAttribute('data-index'), item.innerHTML);
+    });
+  });
+};
+
+todoComponent();
+
+const desForm = document.querySelector('.todo-form');
+desForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+  addTodo(desForm.elements.description.value);
+  desForm.reset();
+  todoComponent();
+});
