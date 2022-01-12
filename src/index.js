@@ -1,10 +1,10 @@
 import './style.css';
 import {
-  getAllTodos, addTodo, removeTodo, editTodo,
+  getAllTodos, addTodo, removeTodo, editTodo, isCompleted, clearAllCompleted,
 } from './todo';
 
 const showToDo = (todo) => `<li class="item">
-                    <input class="check" type="checkbox" value="index"/>
+                    <input class="check" type="checkbox" value="${todo.index}"/>
                      <span class="desc" data-index="${todo.index}" contentEditable="true"> ${todo.description} </span>
                     <button class="trash" value="${todo.index}">
                        <i class="fa fa-trash"></i>
@@ -25,7 +25,7 @@ const cardComponent = () => `<section class="card">
             <ul class="todos">
             </ul>
             <div class="card-footer">
-                <a href="#"> Clear all completed </a>
+                <a class="clear" href="#"> Clear all completed </a>
             </div>
         </div>
     </section>`;
@@ -53,6 +53,13 @@ const todoComponent = () => {
       editTodo(item.getAttribute('data-index'), item.innerHTML);
     });
   });
+
+  const checkbox = document.querySelectorAll('.check');
+  checkbox.forEach((item) => {
+    item.addEventListener('change', () => {
+      isCompleted(item.value);
+    });
+  });
 };
 
 todoComponent();
@@ -62,5 +69,12 @@ desForm.addEventListener('submit', (e) => {
   e.preventDefault();
   addTodo(desForm.elements.description.value);
   desForm.reset();
+  todoComponent();
+});
+
+const clearCompleted = document.querySelector('.clear');
+clearCompleted.addEventListener('click', (e) => {
+  e.preventDefault();
+  clearAllCompleted();
   todoComponent();
 });
