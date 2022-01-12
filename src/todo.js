@@ -7,7 +7,7 @@ export const addTodo = (description) => {
   localStorage.setItem('todos', JSON.stringify(todos));
 };
 
-const adjustIndex = () => {
+export const adjustIndex = () => {
   let n = 0;
   todos.forEach((item) => {
     n += 1;
@@ -35,5 +35,23 @@ export const editTodo = (index, description) => {
     Number(index) === item.index
   ));
   todo.description = description;
+  localStorage.setItem('todos', JSON.stringify(todos));
+};
+
+export const clearAllCompleted = () => {
+  const uncompleted = todos.filter((item) => (
+    item.completed !== true
+  ));
+  adjustIndex();
+  localStorage.setItem('todos', JSON.stringify(uncompleted));
+};
+
+export const isCompleted = (index) => {
+  const todo = todos.find((item) => Number(index) === item.index);
+  if (todo.completed === true) {
+    todo.completed = false;
+  } else {
+    todo.completed = true;
+  }
   localStorage.setItem('todos', JSON.stringify(todos));
 };
