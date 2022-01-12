@@ -1,5 +1,7 @@
 import './style.css';
-import {getAllTodos, addTodo, removeTodo, editTodo, adjustIndex} from './todo';
+import {
+  getAllTodos, addTodo, removeTodo, editTodo,
+} from './todo';
 
 const showToDo = (todo) => `<li class="item">
                     <input class="check" type="checkbox" value="index"/>
@@ -8,7 +10,6 @@ const showToDo = (todo) => `<li class="item">
                        <i class="fa fa-trash"></i>
                     </button>
                 </li><hr/>`;
-
 
 const cardComponent = () => `<section class="card">
         <div>
@@ -30,8 +31,7 @@ const cardComponent = () => `<section class="card">
     </section>`;
 
 const main = document.querySelector('main');
-const render = () => main.innerHTML = cardComponent();
-render();
+main.innerHTML = cardComponent();
 
 const todos = document.querySelector('.todos');
 const todoComponent = () => {
@@ -50,8 +50,6 @@ const todoComponent = () => {
   const desc = document.querySelectorAll('.desc');
   desc.forEach((item) => {
     item.addEventListener('input', () => {
-      console.log(item.getAttribute('data-index'));
-      console.log(item.innerHTML);
       editTodo(item.getAttribute('data-index'), item.innerHTML);
     });
   });

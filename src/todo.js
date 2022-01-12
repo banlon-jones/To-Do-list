@@ -7,6 +7,14 @@ export const addTodo = (description) => {
   localStorage.setItem('todos', JSON.stringify(todos));
 };
 
+const adjustIndex = () => {
+  let n = 0;
+  todos.forEach((item) => {
+    n += 1;
+    item.index = n;
+  });
+};
+
 export const removeTodo = (index) => {
   todos = todos.filter((item) => (
     Number(index) !== item.index
@@ -23,17 +31,9 @@ export const getAllTodos = () => {
 };
 
 export const editTodo = (index, description) => {
-  let todo = todos.find((item) => (
+  const todo = todos.find((item) => (
     Number(index) === item.index
   ));
   todo.description = description;
   localStorage.setItem('todos', JSON.stringify(todos));
-};
-
-const adjustIndex = () => {
-  let n = 0;
-  todos.forEach((item) => {
-    n++;
-    item.index = n;
-  });
 };
