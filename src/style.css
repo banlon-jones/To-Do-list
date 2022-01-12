@@ -2,9 +2,12 @@ body {
   font-family: "Roboto Light", sans-serif;
 }
 
-li span {
+.trash {
   float: right;
   color: #777;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
 }
 
 .card {
