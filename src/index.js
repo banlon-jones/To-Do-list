@@ -1,8 +1,7 @@
 import './style.css';
-import {
-  getAllTodos, addTodo, removeTodo, editTodo, isCompleted, clearAllCompleted,
-} from './todo';
+import Todo from './todo';
 
+const todo = new Todo();
 const showToDo = (todo) => `<li class="item">
                     <input class="check" type="checkbox" value="${todo.index}"/>
                      <span class="desc" data-index="${todo.index}" contentEditable="true"> ${todo.description} </span>
@@ -36,13 +35,13 @@ main.innerHTML = cardComponent();
 const todos = document.querySelector('.todos');
 const todoComponent = () => {
   todos.innerHTML = '';
-  getAllTodos().forEach((item) => {
+  todo.getAllTodos().forEach((item) => {
     todos.innerHTML += showToDo(item);
   });
   const remove = document.querySelectorAll('.trash');
   remove.forEach((item) => {
     item.addEventListener('click', () => {
-      removeTodo(item.getAttribute('value'));
+      todo.removeTodo(item.getAttribute('value'));
       todoComponent();
     });
   });
@@ -50,14 +49,14 @@ const todoComponent = () => {
   const desc = document.querySelectorAll('.desc');
   desc.forEach((item) => {
     item.addEventListener('input', () => {
-      editTodo(item.getAttribute('data-index'), item.innerHTML);
+      todo.editTodo(item.getAttribute('data-index'), item.innerHTML);
     });
   });
 
   const checkbox = document.querySelectorAll('.check');
   checkbox.forEach((item) => {
     item.addEventListener('change', () => {
-      isCompleted(item.value);
+      todo.isCompleted(item.value);
     });
   });
 };
@@ -67,7 +66,7 @@ todoComponent();
 const desForm = document.querySelector('.todo-form');
 desForm.addEventListener('submit', (e) => {
   e.preventDefault();
-  addTodo(desForm.elements.description.value);
+  todo.addTodo(desForm.elements.description.value);
   desForm.reset();
   todoComponent();
 });
@@ -75,6 +74,6 @@ desForm.addEventListener('submit', (e) => {
 const clearCompleted = document.querySelector('.clear');
 clearCompleted.addEventListener('click', (e) => {
   e.preventDefault();
-  clearAllCompleted();
+  todo.clearAllCompleted();
   todoComponent();
 });
