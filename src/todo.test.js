@@ -16,7 +16,6 @@ describe('Add todo test', () => {
   });
 });
 
-
 describe('remove todo test', () => {
   it('should remove todo', () => {
     const index = 1;
