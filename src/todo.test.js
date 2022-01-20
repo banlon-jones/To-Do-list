@@ -1,5 +1,7 @@
+/** * @jest-environment jsdom */
 import Todo from './todo';
 import LocalStorage from './local-storage-mock';
+import { cardComponent, showToDo } from './main';
 
 global.localStorage = new LocalStorage();
 const todo = new Todo();
@@ -28,13 +30,6 @@ describe('remove todo test', () => {
   });
 });
 
-describe('remove all completed task', () => {
-  it('should clear all completed tasks', () => {
-    todo.clearAllCompleted();
-    expect(todo.todos.length).toBe(2);
-  });
-});
-
 describe('edit todo', () => {
   const index = 1;
   it('should change todo description from test-2 to hello', () => {
@@ -43,6 +38,7 @@ describe('edit todo', () => {
       if (item.index === index) {
         return item.description;
       }
+      return null;
     }).join('')).toBe('hello');
   });
   it('should toggle status from false to true', () => {
@@ -52,6 +48,7 @@ describe('edit todo', () => {
       if (item.index === index) {
         return item.completed;
       }
+      return null;
     }).join('')).toBeTruthy();
   });
   it('should toggle status from true to false', () => {
@@ -61,6 +58,32 @@ describe('edit todo', () => {
       if (item.index === Number(index)) {
         return item.completed;
       }
+      return null;
     }).join('')).toMatch('false');
+  });
+});
+
+describe('remove all completed task', () => {
+  it('should clear all completed tasks', () => {
+    todo.clearAllCompleted();
+    expect(todo.todos.length).toBe(2);
+  });
+});
+
+describe('DOM manipulation test', () => {
+  it('should display card component', () => {
+    document.body.innerHTML = '<main></main>';
+    const main = document.querySelector('main');
+    main.innerHTML = cardComponent();
+    expect(document.querySelectorAll('.card').length).toBe(1);
+  });
+  it('should display a todo', () => {
+    document.body.innerHTML = '<ul class="todos"></ul>';
+    const todos = document.querySelector('.todos');
+    todo.todos.forEach((item) => {
+      todos.innerHTML += showToDo(item);
+    });
+    const list = document.querySelectorAll('.todos');
+    expect(list).toHaveLength(1);
   });
 });
