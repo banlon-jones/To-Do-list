@@ -16,3 +16,11 @@ describe('Add todo test', () => {
   });
 });
 
+
+describe('remove todo test', () => {
+  it('should remove todo', () => {
+    const index = 1;
+    todo.removeTodo(index);
+    expect(todo.todos.length).toBe(1);
+  });
+});
