@@ -14,12 +14,23 @@ describe('Add todo test', () => {
     todo.addTodo('test-2');
     expect(todo.todos[1].description).toBe('test-2');
   });
+  test('check description', () => {
+    todo.addTodo('test-3');
+    expect(todo.todos.length).toBe(3);
+  });
 });
 
 describe('remove todo test', () => {
   it('should remove todo', () => {
     const index = 1;
     todo.removeTodo(index);
-    expect(todo.todos.length).toBe(1);
+    expect(todo.todos.length).toBe(2);
+  });
+});
+
+describe('remove all completed task', () => {
+  it('should clear all completed tasks', () => {
+    todo.clearAllCompleted();
+    expect(todo.todos.length).toBe(2);
   });
 });
